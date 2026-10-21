@@ -31,7 +31,8 @@ const HomeRoute = () => {
             onClick={()=>navigate("/add-items")}>
               Add items
             </li>
-            <li className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300">
+            <li className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300"
+            onClick={()=>navigate("/bin")}>
               Bin
             </li>
             <li className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300">
@@ -51,9 +52,9 @@ const HomeRoute = () => {
     <ItemBoxAdded />
           </div>
           <div className=" h-[30vh] overflow-y-auto px-2 py-2">
-          <div className="w-full">
-            <div className="w-full border-b border-black">
-              <table className="w-full text-center">
+          <div className="w-full relative">
+            <div className="w-full border-b border-black ">
+              <table className="w-full text-center ">
                 <thead>
                   <tr>
                     <th className="py-2">Product Id</th>

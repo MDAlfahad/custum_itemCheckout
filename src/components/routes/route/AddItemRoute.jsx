@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import Button from "../../components/button/Button";
-import BoxItem from "../../components/itemsbox/BoxItem";
 import { useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa6";
+import BoxItem from "../../components/itemsbox/BoxItem";
 
 const AddItemRoute = () => {
   const navigate = useNavigate();
@@ -15,6 +14,42 @@ const AddItemRoute = () => {
   const handleHide = () => {
     setShowAddBtn(setShowAddBtn == showAddBtn);
   };
+  const [productData, setProductData] = useState({
+    id: '',
+    name: "",
+    brand: "",
+    quantity: "",
+    units: "",
+    productdesc: "",
+    specification: "",
+    price: "",
+    sellingPrice: "",
+    gstCode: "",
+    gstrate: "",
+    itemStoke: "",
+  });
+
+  const productId = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProductData({ ...productData, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const exestingData = JSON.parse(localStorage.getItem("products")) || [];
+
+    const productId = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+
+    const update = [...exestingData, productData,];
+
+    localStorage.setItem("products", JSON.stringify(update));
+
+    setProductData({});
+  };
+
+  const productDataCatch = JSON.parse(localStorage.getItem("products"));
+
   return (
     <>
       <div
@@ -25,7 +60,7 @@ const AddItemRoute = () => {
             Product Details
           </h1>
           <form
-            action="submit"
+            onSubmit={handleSubmit}
             className="flex flex-col gap-1 items-start w-full text-[14px]"
           >
             <div className="flex items-center gap-2 w-full">
@@ -33,6 +68,9 @@ const AddItemRoute = () => {
                 <label htmlFor="name">Product Name</label>
                 <input
                   type="text"
+                  name="name"
+                  value={productData.name}
+                  onChange={handleChange}
                   placeholder="Product"
                   className="px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
                 />
@@ -41,6 +79,9 @@ const AddItemRoute = () => {
                 <label htmlFor="name">Product brand</label>
                 <input
                   type="text"
+                  name="brand"
+                  value={productData.brand}
+                  onChange={handleChange}
                   placeholder="Brand"
                   className="px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
                 />
@@ -50,7 +91,10 @@ const AddItemRoute = () => {
               <div className="flex flex-col w-full ">
                 <label htmlFor="name">Product Quantity</label>
                 <input
-                  type="text"
+                  type="number"
+                  name="quantity"
+                  value={productData.quantity}
+                  onChange={handleChange}
                   placeholder="Quantity"
                   className="px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
                 />
@@ -59,6 +103,9 @@ const AddItemRoute = () => {
                 <label htmlFor="name">Product Units</label>
                 <input
                   type="text"
+                  name="units"
+                  value={productData.units}
+                  onChange={handleChange}
                   placeholder="Nos, pcs, kgs, meters"
                   className="px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
                 />
@@ -67,12 +114,18 @@ const AddItemRoute = () => {
             <label htmlFor="name">Product Description</label>
             <input
               type="text"
+              name="productdesc"
+              value={productData.productdesc}
+              onChange={handleChange}
               placeholder="Description"
               className="w-full px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
             />
             <label htmlFor="name">Product Specification</label>
             <input
               type="text"
+              name="specification"
+              value={productData.specification}
+              onChange={handleChange}
               placeholder="Specification"
               className="w-full px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
             />
@@ -81,6 +134,9 @@ const AddItemRoute = () => {
                 <label htmlFor="name">Product Price</label>
                 <input
                   type="text"
+                  name="price"
+                  value={productData.price}
+                  onChange={handleChange}
                   placeholder="price"
                   className="px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
                 />
@@ -89,6 +145,9 @@ const AddItemRoute = () => {
                 <label htmlFor="name">Selling price</label>
                 <input
                   type="text"
+                  name="sellingPrice"
+                  value={productData.sellingPrice}
+                  onChange={handleChange}
                   placeholder="selling price"
                   className="px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
                 />
@@ -99,6 +158,9 @@ const AddItemRoute = () => {
                 <label htmlFor="name">HSN/SAC code</label>
                 <input
                   type="text"
+                  name="gstCode"
+                  value={productData.gstCode}
+                  onChange={handleChange}
                   placeholder="HSN/SAC code"
                   className="px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
                 />
@@ -106,7 +168,10 @@ const AddItemRoute = () => {
               <div className="flex flex-col w-full">
                 <label htmlFor="name">GST Rate</label>
                 <input
-                  type="text"
+                  type="number"
+                  name="gstrate"
+                  value={productData.gstrate}
+                  onChange={handleChange}
                   placeholder="GST Rate"
                   className="px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
                 />
@@ -115,6 +180,9 @@ const AddItemRoute = () => {
             <label htmlFor="name">Items InStoke</label>
             <input
               type="text"
+              name="itemStoke"
+              value={productData.itemStoke}
+              onChange={handleChange}
               placeholder="Stoke items"
               className="w-full px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
             />
@@ -147,10 +215,27 @@ const AddItemRoute = () => {
           </div>
         </div>
         <div>
-            <h1 className="text-3xl font-semibold  py-2">Product Stored Details</h1>
+          <h1 className="text-3xl font-semibold  py-2">
+            Product Stored Details
+          </h1>
         </div>
         <div className=" h-[85vh] flex flex-col gap-2 py-2 overflow-y-auto border-y border-black/50">
-          <p className="text-center">No Product Added! Click add items to add</p>
+          <p className="text-center">
+            No Product Added! Click add items to add
+          </p>
+
+          <div>
+            {productDataCatch.map((items, index) => (
+              <BoxItem
+                key={index}
+                name={items.name}
+                brand={items.brand}
+                price={items.price}
+                quantity={items.quantity}
+                units={items.units}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>
