@@ -1,8 +1,8 @@
-import React from 'react'
+import MainRoute from "./components/routes/MainRoute"
 
 const App = () => {
   return (
-    <div></div>
+    <div><MainRoute/></div>
   )
 }
 
