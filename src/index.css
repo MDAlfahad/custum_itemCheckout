@@ -13,5 +13,6 @@ body{
     margin: auto;
     height: 100vh;
     background: #b9eacc;
+    overflow: hidden;
 }
 
