@@ -15,8 +15,8 @@ const AddItemRoute = () => {
     setShowAddBtn(setShowAddBtn == showAddBtn);
   };
   const [productData, setProductData] = useState({
-    id: '',
-    name: "",
+    id: crypto.randomUUID(),
+    productname: "",
     brand: "",
     quantity: "",
     units: "",
@@ -29,28 +29,44 @@ const AddItemRoute = () => {
     itemStoke: "",
   });
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProductData({ ...productData, [name]: value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (
+      !productData.productname ||
+      !productData.brand ||
+      !productData.quantity ||
+      !productData.units ||
+      !productData.productdesc ||
+      !productData.specification ||
+      !productData.price ||
+      !productData.sellingPrice ||
+      !productData.gstCode ||
+      !productData.gstrate ||
+      !productData.itemStoke
+    ) {
+      alert("All field is Required");
+      return;
+    }
     const exestingData = JSON.parse(localStorage.getItem("products")) || [];
 
-    // const productId = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
-
-    const update = [...exestingData, productData,];
+    const update = [...exestingData, productData];
 
     localStorage.setItem("products", JSON.stringify(update));
-    alert("Product Added Successfully")
+    alert("Product Added Successfully");
 
-    window.location.reload()
+    window.location.reload();
   };
 
-
   const productDataCatch = JSON.parse(localStorage.getItem("products")) || [];
-
+  const DeleteData = (id) => {
+    const updatedProducts = productDataCatch.filter((items) => items.id != id);
+    localStorage.setItem("products", JSON.stringify(updatedProducts));
+  };
   return (
     <>
       <div
@@ -69,8 +85,8 @@ const AddItemRoute = () => {
                 <label htmlFor="name">Product Name</label>
                 <input
                   type="text"
-                  name="name"
-                  value={productData.name}
+                  name="productname"
+                  value={productData.productname}
                   onChange={handleChange}
                   placeholder="Product"
                   className="px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
@@ -156,13 +172,13 @@ const AddItemRoute = () => {
             </div>
             <div className="flex items-center gap-2 w-full">
               <div className="flex flex-col w-full">
-                <label htmlFor="name">HSN/SAC code</label>
+                <label htmlFor="name">HSN/SAC/GST number</label>
                 <input
                   type="text"
                   name="gstCode"
                   value={productData.gstCode}
                   onChange={handleChange}
-                  placeholder="HSN/SAC code"
+                  placeholder="HSN/SAC/GST number"
                   className="px-2 py-2 bg-transparent border border-black/50 text-black placeholder-black/50 w-full outline-none"
                 />
               </div>
@@ -204,9 +220,9 @@ const AddItemRoute = () => {
 
       {/* items listing  */}
       <div className="w-full px-4 py-4">
-        <div className="flex items-center justify-between py-2">
+        <div className="flex items-center justify-between h-14">
           <span
-            className="p-2 rounded-full bg-green-500 border border-black/30 cursor-pointer"
+            className="p-2 rounded-full bg-green-500 border border-black/30 cursor-pointer hover:p-3 hover:shadow-md transition-all duration-300"
             onClick={() => navigate("/")}
           >
             <IoArrowBack />
@@ -221,21 +237,30 @@ const AddItemRoute = () => {
           </h1>
         </div>
         <div className=" h-[85vh] flex flex-col gap-2 py-2 overflow-y-auto border-y border-black/50">
-          {productDataCatch==""?
-              <p className="text-center">
-            No Product Added! Click add items to add
-          </p>:""
-          }
+          {productDataCatch == "" ? (
+            <p className="text-center">
+              No Product Added! Click add items to add
+            </p>
+          ) : (
+            ""
+          )}
 
           <div className="flex flex-col gap-2">
-            {productDataCatch.map((items, index) => (
+            {productDataCatch.map((items) => (
               <BoxItem
-                key={index || ''}
-                name={items.name || ''} 
-                brand={items.brand ||''}
-                price={items.price ||" "}
-                quantity={items.quantity || ""}
-                units={items.units || ""}
+                key={items.id}
+                id={items.id}
+                name={items.productname || ""}
+                brand={items.brand || ""}
+                price={items.price || "0"}
+                sellingPrice={items.sellingPrice || "0"}
+                productdesc={items.productdesc || ""}
+                specification={items.specification || ""}
+                date={items.date || ""}
+                modifiedDate={items.modifiedDate || ""}
+                itemStoke={items.itemStoke || "0"}
+                totalUnit={`${items.quantity} ${items.units}` || "0"}
+                onClick={()=>DeleteData(items.id)}
               />
             ))}
           </div>
