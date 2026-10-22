@@ -19,7 +19,7 @@ const HomeRoute = () => {
           />
           <IoSearchOutline className="text-3xl" />
         </span>
-        <div className="w-96 flex justify-center px-2">
+        <div className=" flex justify-center px-2">
           <ul className="flex items-center gap-10">
             <li
               className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300"
@@ -38,7 +38,11 @@ const HomeRoute = () => {
             <li className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300">
               History
             </li>
+            <Button
+          text="Login"
+          onClick={()=>navigate("/signup-page")}/>
           </ul>
+          
         </div>
       </div>
       <div className="w-full flex flex-col gap-2 py-4">

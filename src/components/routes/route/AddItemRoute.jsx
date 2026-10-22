@@ -45,7 +45,6 @@ const AddItemRoute = () => {
 
     localStorage.setItem("products", JSON.stringify(update));
 
-    setProductData({});
   };
 
   const productDataCatch = JSON.parse(localStorage.getItem("products"));

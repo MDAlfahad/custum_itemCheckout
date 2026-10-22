@@ -3,6 +3,7 @@ import HomeRoute from "./route/HomeRoute";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddItemRoute from "./route/AddItemRoute";
 import BinRoute from "./route/BinRoute";
+import SignupPage from "../page/SignupPage";
 
 const MainRoute = () => {
   return (
@@ -12,6 +13,7 @@ const MainRoute = () => {
             <Route path="/" element={<HomeRoute/>}/>
             <Route path="/add-items" element={<AddItemRoute/>}/>
             <Route path="/bin" element={<BinRoute/>}/>
+            <Route path="/signup-page" element={<SignupPage/>}/>
          </Routes>
         </Router>
     </div>
