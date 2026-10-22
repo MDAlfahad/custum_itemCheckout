@@ -29,7 +29,6 @@ const AddItemRoute = () => {
     itemStoke: "",
   });
 
-  const productId = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,15 +38,18 @@ const AddItemRoute = () => {
     e.preventDefault();
     const exestingData = JSON.parse(localStorage.getItem("products")) || [];
 
-    const productId = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
+    // const productId = Math.floor(Math.random() * (10000 - 1000 + 1)) + 1000;
 
     const update = [...exestingData, productData,];
 
     localStorage.setItem("products", JSON.stringify(update));
+    alert("Product Added Successfully")
 
+    window.location.reload()
   };
 
-  const productDataCatch = JSON.parse(localStorage.getItem("products"));
+
+  const productDataCatch = JSON.parse(localStorage.getItem("products")) || [];
 
   return (
     <>
@@ -219,19 +221,21 @@ const AddItemRoute = () => {
           </h1>
         </div>
         <div className=" h-[85vh] flex flex-col gap-2 py-2 overflow-y-auto border-y border-black/50">
-          <p className="text-center">
+          {productDataCatch==""?
+              <p className="text-center">
             No Product Added! Click add items to add
-          </p>
+          </p>:""
+          }
 
-          <div>
+          <div className="flex flex-col gap-2">
             {productDataCatch.map((items, index) => (
               <BoxItem
-                key={index}
-                name={items.name}
-                brand={items.brand}
-                price={items.price}
-                quantity={items.quantity}
-                units={items.units}
+                key={index || ''}
+                name={items.name || ''} 
+                brand={items.brand ||''}
+                price={items.price ||" "}
+                quantity={items.quantity || ""}
+                units={items.units || ""}
               />
             ))}
           </div>

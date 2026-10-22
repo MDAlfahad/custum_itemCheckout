@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import ItemBoxAdded from "../../components/itemsbox/ItemBoxAdded";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
 const HomeRoute = () => {
   const navigate = useNavigate();
+
+  const[show, setShow] = useState(false)
+  const userAuth = localStorage.getItem("loginVlaue");
+
+  if(userAuth ===1){
+    setShow!=show
+  }
+  
+  
+
   return (
     <div className="flex flex-col px-4 py-4">
       <div className="flex items-center justify-center ">
         <div className="">
-          <h1 className="px-10 text-3xl font-semibold cursor-pointer">FAHAD</h1>
+          <h1 className="px-5 text-3xl font-semibold cursor-pointer">FAHAD</h1>
         </div>
-        <span className="flex items-center border border-black/30 rounded-sm lg:w-[800px] px-2">
+        <span className="flex items-center border border-black/30 rounded-sm lg:w-[700px] px-2">
           <input
             type="search"
             placeholder="Get Items Easy"
@@ -20,7 +30,7 @@ const HomeRoute = () => {
           <IoSearchOutline className="text-3xl" />
         </span>
         <div className=" flex justify-center px-2">
-          <ul className="flex items-center gap-10">
+          <ul className="flex items-center gap-6">
             <li
               className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300"
               onClick={() => navigate("/")}
@@ -38,9 +48,15 @@ const HomeRoute = () => {
             <li className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300">
               History
             </li>
+            <li 
+            className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300"
+            onClick={()=>navigate("/profile-page")}>
+              Profile
+            </li>
+            {show &&
             <Button
           text="Login"
-          onClick={()=>navigate("/signup-page")}/>
+          onClick={()=>navigate("/signup-page")}/>}
           </ul>
           
         </div>
