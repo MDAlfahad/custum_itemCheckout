@@ -66,6 +66,7 @@ const AddItemRoute = () => {
   const DeleteData = (id) => {
     const updatedProducts = productDataCatch.filter((items) => items.id != id);
     localStorage.setItem("products", JSON.stringify(updatedProducts));
+    window.location.reload();
   };
   return (
     <>
