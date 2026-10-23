@@ -1,26 +1,53 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import ItemBoxAdded from "../../components/itemsbox/ItemBoxAdded";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
+import AddedItemsBox from "../../components/itemsbox/AddedItemsBox";
+
 const HomeRoute = () => {
   const navigate = useNavigate();
 
-  const[show, setShow] = useState(false)
-  const userAuth = localStorage.getItem("loginVlaue");
+  const productDetails = JSON.parse(localStorage.getItem("products") || "[]");
 
-  if(userAuth ===1){
-    setShow!=show
-  }
-  
-  
+  const [selectedItems, setSelectedItems] = useState(() =>{
+    const saveItem = JSON.parse(localStorage.getItem("selectedItems") || "[]");
+    return Array.isArray(saveItem)? saveItem : [];
+});
+
+  // Product ko upar add karo
+  const addProduct = (product) => {
+    const alreadyAdded = selectedItems.some((items) => items.id === product.id);
+    if (alreadyAdded) {
+      return;
+    }
+    const updateItems = [...selectedItems, product];
+    setSelectedItems(updateItems);
+    localStorage.setItem("selectedItems", JSON.stringify(updateItems));
+  };
+
+  // Selected products clear karo
+  const updateProduct = JSON.parse(localStorage.getItem("selectedItems"))||[]
+  const clearProducts = (id) => {
+    const deleteItems = updateProduct.filter((item)=> item.id!= id)
+    localStorage.setItem("selectedItems", JSON.stringify(deleteItems))
+    window.location.reload();
+  };
+
+  // Selected products print karo
+  const handleCheckout = () => {
+    if (selectedItems.length === 0) {
+      alert("Please select at least one product!");
+      return;
+    }
+  };
 
   return (
     <div className="flex flex-col px-4 py-4">
-      <div className="flex items-center justify-center ">
-        <div className="">
-          <h1 className="px-5 text-3xl font-semibold cursor-pointer">FAHAD</h1>
-        </div>
+      {/* Navbar */}
+      <div className="no-print flex items-center justify-center">
+        <h1 className="px-5 text-3xl font-semibold cursor-pointer">FAHAD</h1>
+
         <span className="flex items-center border border-black/30 rounded-sm lg:w-[700px] px-2">
           <input
             type="search"
@@ -29,83 +56,99 @@ const HomeRoute = () => {
           />
           <IoSearchOutline className="text-3xl" />
         </span>
-        <div className=" flex justify-center px-2">
-          <ul className="flex items-center gap-6">
-            <li
-              className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300"
-              onClick={() => navigate("/")}
-            >
-              Home
-            </li>
-            <li className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300"
-            onClick={()=>navigate("/add-items")}>
-              Add items
-            </li>
-            <li className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300"
-            onClick={()=>navigate("/bin")}>
-              Bin
-            </li>
-            <li className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300">
-              History
-            </li>
-            <li 
-            className="text-black/60 hover:text-black cursor-pointer hover:text-lg transition-all duration-300"
-            onClick={()=>navigate("/profile-page")}>
-              Profile
-            </li>
-            {show &&
-            <Button
-          text="Login"
-          onClick={()=>navigate("/signup-page")}/>}
-          </ul>
-          
-        </div>
+
+        <ul className="flex items-center gap-6 px-2">
+          <li className="cursor-pointer" onClick={() => navigate("/")}>
+            Home
+          </li>
+          <li className="cursor-pointer" onClick={() => navigate("/add-items")}>
+            Add items
+          </li>
+          <li className="cursor-pointer" onClick={() => navigate("/bin")}>
+            Bin
+          </li>
+          <li className="cursor-pointer">History</li>
+          <li
+            className="cursor-pointer"
+            onClick={() => navigate("/profile-page")}
+          >
+            Profile
+          </li>
+        </ul>
       </div>
+
       <div className="w-full flex flex-col gap-2 py-4">
         <h4 className="text-center text-3xl">Your Items</h4>
-        {/* items listing */}
-        <div className="h-[80vh] border border-black/40">
-          <div className="h-[50vh] overflow-y-auto border-y border-black px-2 py-2">
-    <ItemBoxAdded />
-    <ItemBoxAdded />
-    <ItemBoxAdded />
-    <ItemBoxAdded />
+
+        <div className="h-[80vh] border border-black/40 flex flex-col">
+          {/* Selected products: PRINT AREA */}
+          <div
+            id="print-area"
+            className="h-[50vh] overflow-y-auto border-y border-black px-2 py-2"
+          >
+            {selectedItems.length === 0 ? (
+              <p className="no-print text-center text-gray-500 mt-5">
+                Click a product below to add it here
+              </p>
+            ) : (
+              <div className="flex flex-col gap-2">
+                {selectedItems.map((item) => (
+                  <AddedItemsBox
+                    key={item.id}
+                    id={item.id}
+                    productName={item.productname}
+                    ProductBrand={item.brand}
+                    specification={item.specification}
+                    gst={item.gst}
+                    price={item.sellingPrice}
+                    onClick={()=>clearProducts(item.id)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
-          <div className=" h-[30vh] overflow-y-auto px-2 py-2">
-          <div className="w-full relative">
-            <div className="w-full border-b border-black ">
-              <table className="w-full text-center ">
-                <thead>
-                  <tr>
-                    <th className="py-2">Product Id</th>
-                    <th className="py-2">Name</th>
-                    <th className="py-2">Brand</th>
-                    <th className="py-2">description</th>
-                    <th className="py-2">Quantity</th>
-                    <th className="py-2 text-end">Price</th>
-                    <th className="py-2 text-end">Remark</th>
-                  </tr>
-                </thead>
-              </table>
+
+          {/* Inventory table */}
+          <div className="h-[30vh] overflow-y-auto px-2 py-2 no-print">
+            <table className="w-full text-center border-b border-black/50">
+              <thead>
+                <tr>
+                  <th className="py-2">Product Id</th>
+                  <th className="py-2">Name</th>
+                  <th className="py-2">Brand</th>
+                  <th className="py-2">Specification</th>
+                  <th className="py-2">In Stock</th>
+                  <th className="py-2 text-end">Price</th>
+                </tr>
+              </thead>
+            </table>
+
+            <div className="flex flex-col gap-2">
+              {productDetails.map((item) => (
+                <div
+                  key={item.id}
+                  onClick={() => addProduct(item)}
+                  className="cursor-pointer hover:bg-black/5 transition-colors"
+                  title="Click to add product"
+                >
+                  <ItemBoxAdded
+                    id={item.id}
+                    productName={item.productname}
+                    brand={item.brand}
+                    specification={item.specification}
+                    stoke={item.itemStoke}
+                    price={item.sellingPrice}
+                  />
+                </div>
+              ))}
             </div>
           </div>
-          {/* Added items lists */}
-
-          <div className="flex flex-col gap-2">
-            <ItemBoxAdded />
-            <ItemBoxAdded />
-            <ItemBoxAdded />
-            <ItemBoxAdded />
-            <ItemBoxAdded />
-            <ItemBoxAdded />
-          </div>
         </div>
 
-        </div>
-        
-        <div className="w-full flex items-center justify-end gap-4">
-          <Button text="Clear" />
-          <Button text="Checkout" />
+        {/* Actions */}
+        <div className="no-print w-full flex items-center justify-end gap-4">
+          <Button text="Clear" onClick={clearProducts} />
+          <Button text="Checkout" onClick={handleCheckout} />
         </div>
       </div>
     </div>

@@ -29,7 +29,7 @@ const ProfileRoute = () => {
         <h1 className="px-6 text-3xl font-semibold py-4 rounded-sm bg-green-500/80">
           Owner Details
         </h1>
-        <div className="w-full px-6 py-4">
+        <div className="w-full flex flex-col gap-2 px-6 py-4">
           <div className="w-full flex items-center gap-2">
             <div className="w-full">
               <label htmlFor="name" className="flex gap-1">
@@ -150,7 +150,7 @@ const ProfileRoute = () => {
           <h1 className="px-6 text-3xl font-semibold py-4 rounded-sm bg-green-500/80">
             Company Details
           </h1>
-          <div className="w-full px-6">
+          <div className="w-full flex flex-col px-6 gap-2">
             <label htmlFor="name" className="flex gap-1">
               Company Name <p className="text-red-500">*</p>
             </label>
@@ -169,8 +169,8 @@ const ProfileRoute = () => {
               required
               className="w-full px-2 py-2 bg-transparent outline-none border border-black/50 placeholder-black/50"
             />
-            <div>
-              <div>
+            <div className="w-full flex items-center gap-2">
+              <div className="w-full">
                 <label htmlFor="number" className="flex gap-1">
                   Company Phone <p className="text-red-500">*</p>
                 </label>
@@ -181,7 +181,7 @@ const ProfileRoute = () => {
                   className="w-full px-2 py-2 bg-transparent outline-none border border-black/50 placeholder-black/50"
                 />
               </div>
-              <div>
+              <div className="w-full ">
                 <label htmlFor="number" className="flex gap-1">
                   Company Second Phone <p className="text-red-500">*</p>
                 </label>
@@ -193,42 +193,56 @@ const ProfileRoute = () => {
                 />
               </div>
             </div>
-            <label htmlFor="gstNumber" className="flex gap-1">
-              GST number <p className="text-red-500">*</p>
-            </label>
-            <input
-              type="text"
-              placeholder="GST number"
-              required
-              className="w-full px-2 py-2 bg-transparent outline-none border border-black/50 placeholder-black/50"
-            />
-            <label htmlFor="liscence" className="flex gap-1">
-              Liscence <p className="text-red-500">*</p>
-            </label>
-            <input
-              type="text"
-              placeholder="Company liscence"
-              required
-              className="w-full px-2 py-2 bg-transparent outline-none border border-black/50 placeholder-black/50"
-            />
-            <label htmlFor="panNumber" className="flex gap-1">
-              Company PAN <p className="text-red-500">*</p>
-            </label>
-            <input
-              type="text"
-              placeholder="Company PAN"
-              required
-              className="w-full px-2 py-2 bg-transparent outline-none border border-black/50 placeholder-black/50"
-            />
-            <label htmlFor="url" className="flex gap-1">
-              Company URL <p className="text-red-500">*</p>
-            </label>
-            <input
-              type="url"
-              placeholder="Company URL"
-              required
-              className="w-full px-2 py-2 bg-transparent outline-none border border-black/50 placeholder-black/50"
-            />
+            <div className="w-full flex items-center gap-2">
+              <div className="w-full">
+                <label htmlFor="gstNumber" className="flex gap-1">
+                  GST number <p className="text-red-500">*</p>
+                </label>
+                <input
+                  type="text"
+                  placeholder="GST number"
+                  required
+                  className="w-full px-2 py-2 bg-transparent outline-none border border-black/50 placeholder-black/50"
+                />
+              </div>
+              <div className="w-full">
+                <label htmlFor="liscence" className="flex gap-1">
+                  Liscence <p className="text-red-500">*</p>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Company liscence"
+                  required
+                  className="w-full px-2 py-2 bg-transparent outline-none border border-black/50 placeholder-black/50"
+                />
+              </div>
+            </div>
+
+            <div className="w-full flex items-center gap-2">
+              <div className="w-full">
+                <label htmlFor="panNumber" className="flex gap-1">
+                  Company PAN <p className="text-red-500">*</p>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Company PAN"
+                  required
+                  className="w-full px-2 py-2 bg-transparent outline-none border border-black/50 placeholder-black/50"
+                />
+              </div>
+              <div className="w-full">
+                <label htmlFor="url" className="flex gap-1">
+                  Company URL <p className="text-red-500">*</p>
+                </label>
+                <input
+                  type="url"
+                  placeholder="Company URL"
+                  required
+                  className="w-full px-2 py-2 bg-transparent outline-none border border-black/50 placeholder-black/50"
+                />
+              </div>
+            </div>
+
             <label htmlFor="address" className="flex gap-1">
               Address <p className="text-red-500">*</p>
             </label>

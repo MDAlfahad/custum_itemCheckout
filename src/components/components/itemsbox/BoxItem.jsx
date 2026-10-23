@@ -14,7 +14,7 @@ const BoxItem = ({
   modifiedDate,
   itemStoke,
   totalUnit,
-  onClick
+  onClick,
 }) => {
   return (
     <div className="flex items-center justify-between border border-green-500/70 rounded-lg px-4 py-1 text-sm">
@@ -56,21 +56,21 @@ const BoxItem = ({
       <div className="flex flex-col gap-1">
         <span className="flex items-center font-semibold">
           In Stoke:
-          <h1 className="font-light">
-            {itemStoke}
-          </h1>
+          <h1 className="font-light">{itemStoke}</h1>
         </span>
         <span className="flex items-center font-semibold">
           Total Unit:<h1 className="font-light">{totalUnit}</h1>
         </span>
-        <button className="border border-black/50 rounded-sm py-1 px-2 hover:bg-green-500/80
+        <button
+          className="border border-black/50 rounded-sm py-1 px-2 hover:bg-green-500/80
       "
-      >
+        >
           EDIT
-          
         </button>
-        <button className="border border-black/50 rounded-sm py-1 px-2 bg-green-500/60 hover:bg-red-500/80"
-        onClick={onClick}>
+        <button
+          className="border border-black/50 rounded-sm py-1 px-2 bg-green-500/60 hover:bg-red-500/80"
+          onClick={onClick}
+        >
           Delete
         </button>
       </div>

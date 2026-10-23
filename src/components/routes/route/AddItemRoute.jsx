@@ -261,7 +261,7 @@ const AddItemRoute = () => {
                 modifiedDate={items.modifiedDate || ""}
                 itemStoke={items.itemStoke || "0"}
                 totalUnit={`${items.quantity} ${items.units}` || "0"}
-                onClick={()=>DeleteData(items.id)}
+                onClick={() => DeleteData(items.id)}
               />
             ))}
           </div>
