@@ -2,9 +2,10 @@ import React, { useMemo } from "react";
 import { Price } from "../components/component/PriceComponent";
 import { IoArrowBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/button/Button";
 
 const CheckOutPage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const selectedItems = useMemo(() => {
     try {
       const savedItems = JSON.parse(
@@ -66,7 +67,6 @@ const CheckOutPage = () => {
   const handlePrint = () => {
     window.print();
   };
-  
 
   if (selectedItems.length === 0) {
     return (
@@ -93,16 +93,17 @@ const CheckOutPage = () => {
   }
 
   return (
-   
     <div className="min-h-screen bg-green-500/30 px-3 py-8 sm:px-6 print:bg-white print:p-0">
-         <div className="flex">
-                  <span
-                    className="p-2 rounded-full bg-green-500 border border-black/30 cursor-pointer hover:p-3 hover:shadow-md transition-all duration-300"
-                    onClick={() => navigate("/")}
-                  >
-                    <IoArrowBack />
-                  </span>
-                </div>
+      <div className="h-10">
+        <div className="flex ">
+        <span
+          className="p-2  rounded-full bg-green-500 border border-black/30 cursor-pointer hover:p-3 hover:shadow-md transition-all duration-300"
+          onClick={() => navigate("/")}
+        >
+          <IoArrowBack />
+        </span>
+      </div>
+      </div>
       {/* Toolbar */}
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 print:hidden">
         <div>
@@ -112,12 +113,7 @@ const CheckOutPage = () => {
           </p>
         </div>
 
-        <button
-          onClick={handlePrint}
-          className="flex shrink-0 items-center  bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700"
-        >
-          Print Invoice
-        </button>
+        
       </div>
 
       {/* Invoice */}
@@ -220,17 +216,19 @@ const CheckOutPage = () => {
 
                     <td className="max-w-64 px-1 py-1 border border-black/50">
                       <div className="flex gap-2">
-                        <p className="font-semibold text-slate-900">
+                        <div>
+                            <p className="font-semibold text-slate-900">
                           {item.productname || "Unnamed Product"}
                         </p>
+                        {item.brand && (
+                          <p className="tracking-tight  text-[12px] text-slate-500">
+                            Brand: {item.brand}
+                          </p>
+                        )}
+                        </div>
                         {item.specification && (
                           <p className="mt-1 whitespace-normal text-xs leading-5 text-slate-500">
                             {item.specification}
-                          </p>
-                        )}
-                        {item.brand && (
-                          <p className="mt-1 text-xs text-slate-500">
-                            Brand: {item.brand}
                           </p>
                         )}
                       </div>
@@ -280,23 +278,29 @@ const CheckOutPage = () => {
               </div>
 
               <div className="flex flex-col px-2 gap-2 text-sm border-x border-black/50">
-                <span className="text-black/50 text-[12px] font-bold">Taxable Amount</span>
+                <span className="text-black/50 text-[12px] font-bold">
+                  Taxable Amount
+                </span>
                 <span className="font-bold text-[16px]">
                   {formatPrice(totals.taxable)}
                 </span>
               </div>
 
               <div className="flex flex-col px-2 gap-2 text-sm border-x border-black/50">
-                <span className="text-black/50 text-[12px] font-bold">Total GST</span>
+                <span className="text-black/50 text-[12px] font-bold">
+                  Total GST
+                </span>
                 <span className="font-bold text-[16px]">
                   {formatPrice(totals.gst)}
                 </span>
               </div>
               <div className="flex flex-col px-2 gap-2 text-sm">
-                <span className="text-black/50 text-[12px] font-bold">Total Amount</span>
+                <span className="text-black/50 text-[12px] font-bold">
+                  Total Amount
+                </span>
                 <span className="text-lg font-bold">
-                {formatPrice(totals.total)}
-              </span>
+                  {formatPrice(totals.total)}
+                </span>
               </div>
             </div>
           </div>
@@ -326,6 +330,14 @@ const CheckOutPage = () => {
           </p>
         </section>
       </main>
+      <div className="flex justify-end mr-44 mt-5">
+        <button
+          onClick={handlePrint}
+          className="flex shrink-0 items-center  bg-white px-4 py-3 text-sm font-semibold text-black shadow-sm transition hover:bg-green-500"
+        >
+          Print Invoice
+        </button>
+      </div>
 
       {/* Print styles */}
       <style>{`
