@@ -65,7 +65,7 @@ const HomeRoute = () => {
             className="cursor-pointer"
             onClick={() => navigate("/profile-page")}
           >
-            Profile
+            DashBoard
           </li>
         </ul>
       </div>

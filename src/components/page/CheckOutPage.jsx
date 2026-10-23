@@ -70,23 +70,21 @@ const CheckOutPage = () => {
 
   if (selectedItems.length === 0) {
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center p-6">
-        <div className="rounded-2xl bg-white p-10 text-center shadow-sm">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 text-3xl">
+      <div className="min-h-screen bg-green-500/50 flex items-center justify-center p-6">
+        <div className="rounded-sm bg-white p-10 text-center shadow-sm">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-sm bg-slate-100 text-3xl">
             🧾
           </div>
           <h1 className="text-xl font-bold text-slate-800">
             No items in invoice
           </h1>
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mt-2 text-sm text-slate-500 mb-10">
             Add products to your items list before generating an invoice.
           </p>
-          <button
-            onClick={() => window.history.back()}
-            className="mt-6 rounded-lg bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-700"
-          >
-            Go Back
-          </button>
+          <Button
+          text="Go Back"
+            onClick={() => window.history.back()}/>
+            
         </div>
       </div>
     );

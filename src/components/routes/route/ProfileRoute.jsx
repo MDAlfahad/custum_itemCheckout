@@ -24,11 +24,19 @@ const ProfileRoute = () => {
         </div>
         <Button text="Logout" onClick={handleLogout} />
       </div>
+      {/* <h1>Dashboard</h1>
+      <div>
+        <div>
+          <p>Profile</p>
+          <Button text="Update Profile" />
+        </div>
+        <div>
+          
+        </div>
+      </div> */}
       {/* profile logic  */}
       <div className="w-full h-[90vh] border-y border-black/50 overflow-y-auto ">
-        <h1 className="px-6 text-3xl font-semibold py-4 rounded-sm bg-green-500/80">
-          Owner Details
-        </h1>
+        
         <div className="w-full flex flex-col gap-2 px-6 py-4">
           <div className="w-full flex items-center gap-2">
             <div className="w-full">
