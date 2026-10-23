@@ -1,7 +1,10 @@
 import React, { useMemo } from "react";
 import { Price } from "../components/component/PriceComponent";
+import { IoArrowBack } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutPage = () => {
+    const navigate = useNavigate();
   const selectedItems = useMemo(() => {
     try {
       const savedItems = JSON.parse(
@@ -63,6 +66,7 @@ const CheckOutPage = () => {
   const handlePrint = () => {
     window.print();
   };
+  
 
   if (selectedItems.length === 0) {
     return (
@@ -89,7 +93,16 @@ const CheckOutPage = () => {
   }
 
   return (
+   
     <div className="min-h-screen bg-green-500/30 px-3 py-8 sm:px-6 print:bg-white print:p-0">
+         <div className="flex">
+                  <span
+                    className="p-2 rounded-full bg-green-500 border border-black/30 cursor-pointer hover:p-3 hover:shadow-md transition-all duration-300"
+                    onClick={() => navigate("/")}
+                  >
+                    <IoArrowBack />
+                  </span>
+                </div>
       {/* Toolbar */}
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 print:hidden">
         <div>
