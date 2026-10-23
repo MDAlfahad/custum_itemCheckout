@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AddedItemsBox = ({id,productName, ProductBrand, specification,value, gst, price, onClick }) => {
+const AddedItemsBox = ({id,productName, ProductBrand, specification, gst, price, onClick }) => {
   return (
     <div className='flex items-center justify-between border-t border-black/50 text-sm'>
         <span>{id}</span>

@@ -15,7 +15,7 @@ const HomeRoute = () => {
     return Array.isArray(saveItem)? saveItem : [];
 });
 
-  // Product ko upar add karo
+
   const addProduct = (product) => {
     const alreadyAdded = selectedItems.some((items) => items.id === product.id);
     if (alreadyAdded) {
@@ -34,13 +34,6 @@ const HomeRoute = () => {
     window.location.reload();
   };
 
-  // Selected products print karo
-  const handleCheckout = () => {
-    if (selectedItems.length === 0) {
-      alert("Please select at least one product!");
-      return;
-    }
-  };
 
   return (
     <div className="flex flex-col px-4 py-4">
@@ -147,8 +140,7 @@ const HomeRoute = () => {
 
         {/* Actions */}
         <div className="no-print w-full flex items-center justify-end gap-4">
-          <Button text="Clear" onClick={clearProducts} />
-          <Button text="Checkout" onClick={handleCheckout} />
+          <Button text="Checkout" onClick={()=>navigate("/checkOut-page")} />
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import SignupPage from "../page/SignupPage";
 import LoginPage from "../page/LoginPage";
 import ProtectedRoute from "./protectedRoute/ProtectedRoute";
 import ProfileRoute from "./route/ProfileRoute";
+import CheckOutPage from "../page/CheckOutPage";
 
 const MainRoute = () => {
   return (
@@ -24,6 +25,7 @@ const MainRoute = () => {
             <Route path="/add-items" element={<AddItemRoute/>}/>
             <Route path="/bin" element={<BinRoute/>}/>
             <Route path="/profile-page" element={<ProfileRoute/>}/>
+            <Route path="/checkOut-page" element={<CheckOutPage/>}/>
 
             </Route>
 
