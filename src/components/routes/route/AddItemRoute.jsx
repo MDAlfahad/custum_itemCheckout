@@ -17,6 +17,7 @@ const AddItemRoute = () => {
   const [productData, setProductData] = useState({
     id: crypto.randomUUID(),
     productname: "",
+    date: new Date().toLocaleDateString(),
     brand: "",
     quantity: "",
     units: "",
@@ -26,9 +27,8 @@ const AddItemRoute = () => {
     sellingPrice: "",
     gstCode: "",
     gstrate: "",
-    itemStoke: "",
+    itemStoke: ""
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProductData({ ...productData, [name]: value });
@@ -54,7 +54,7 @@ const AddItemRoute = () => {
     }
     const exestingData = JSON.parse(localStorage.getItem("products")) || [];
 
-    const update = [...exestingData, productData];
+    const update = [...exestingData, productData, ];
 
     localStorage.setItem("products", JSON.stringify(update));
     alert("Product Added Successfully");

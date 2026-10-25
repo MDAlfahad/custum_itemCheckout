@@ -18,7 +18,7 @@ const BoxItem = ({
 }) => {
   return (
     <div className="flex items-center justify-between border border-green-500/70 rounded-lg px-4 py-1 text-sm">
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 w-400px">
         <span className="flex items-center font-semibold">
           Name:<h1 className="font-medium">{name}</h1>
         </span>
@@ -38,12 +38,12 @@ const BoxItem = ({
           </h3>
         </span>
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 w-[600px]">
         <span className="flex  font-semibold">
-          Description: <p className="font-light max-w-96">{productdesc}</p>
+          Description: <p className="font-light ">{productdesc}</p>
         </span>
         <span className="flex font-semibold">
-          Specification: <p className="font-light max-w-96">{specification}</p>
+          Specification: <p className="font-light ">{specification}</p>
         </span>
         <span className="flex items-center  font-semibold">
           Date: <p className="font-light">{date}</p>
@@ -53,7 +53,7 @@ const BoxItem = ({
         </span>
       </div>
 
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 w-[150px]">
         <span className="flex items-center font-semibold">
           In Stoke:
           <h1 className="font-light">{itemStoke}</h1>

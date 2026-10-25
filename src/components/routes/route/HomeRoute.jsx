@@ -45,7 +45,7 @@ const HomeRoute = () => {
           <input
             type="search"
             placeholder="Get Items Easy"
-            className="w-full px-2 py-2 text-xl text-black/70 bg-transparent outline-none"
+            className="w-full px-2 py-2 text-lg text-black/70 placebo bg-transparent outline-none"
           />
           <IoSearchOutline className="text-3xl" />
         </span>
@@ -116,7 +116,7 @@ const HomeRoute = () => {
               </thead>
             </table>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col ">
               {productDetails.map((item) => (
                 <div
                   key={item.id}
