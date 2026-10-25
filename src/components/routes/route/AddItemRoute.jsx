@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
@@ -260,7 +260,7 @@ const AddItemRoute = () => {
                 date={items.date || ""}
                 modifiedDate={items.modifiedDate || ""}
                 itemStoke={items.itemStoke || "0"}
-                totalUnit={`${items.quantity} ${items.units}` || "0"}
+                totalUnit={`${items.quantity} ${items.units}`}
                 onClick={() => DeleteData(items.id)}
               />
             ))}

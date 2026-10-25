@@ -1,4 +1,3 @@
-import React from 'react'
 import { Price } from '../component/PriceComponent'
 
 const AddedItemsBox = ({id,productName, ProductBrand, specification, gst, price, onClick }) => {

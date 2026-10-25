@@ -1,16 +1,6 @@
-import React, { useState } from "react";
 
 const ItemBoxAdded = ({id, productName,brand, specification, stoke, price }) => {
-  const [value, setValue] = useState(1);
 
-  const handleIncrese = () => {
-    setValue(value + 1);
-  };
-  const handleDecrease = () => {
-    if (value > 1) {
-      setValue(value - 1);
-    }
-  };
 
   return (
     <div className="w-full ">

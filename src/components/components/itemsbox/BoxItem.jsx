@@ -1,6 +1,4 @@
-import React from "react";
-import { MdOutlineDeleteOutline } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+
 import { Price } from "../component/PriceComponent";
 
 const BoxItem = ({

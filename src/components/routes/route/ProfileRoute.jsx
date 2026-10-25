@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";

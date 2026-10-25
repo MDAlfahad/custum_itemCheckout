@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import  { useMemo } from "react";
 import { Price } from "../components/component/PriceComponent";
 import { IoArrowBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +24,7 @@ const CheckOutPage = () => {
     year: "numeric",
   });
 
-  const invoiceNumber = `INV-${Date.now().toString().slice(-8)}`;
+  const invoiceNumber = `INV-${1}`;
 
   const formatPrice = (amount) => (
     <Price amount={Number(amount) || 0} currency="INR" locale="en-IN" />

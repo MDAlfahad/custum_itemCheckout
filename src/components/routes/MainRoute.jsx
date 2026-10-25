@@ -1,6 +1,5 @@
-import React from "react";
 import HomeRoute from "./route/HomeRoute";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 import AddItemRoute from "./route/AddItemRoute";
 import BinRoute from "./route/BinRoute";
 import SignupPage from "../page/SignupPage";
