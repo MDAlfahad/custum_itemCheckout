@@ -1,5 +1,5 @@
 
-const ItemBoxAdded = ({id, productName,brand, specification, stoke, price }) => {
+const ItemBoxAdded = ({id, productName,brand, specification, stoke, price, className }) => {
 
 
   return (
@@ -12,7 +12,7 @@ const ItemBoxAdded = ({id, productName,brand, specification, stoke, price }) => 
         <div className="w-[300px] line-clamp-1 text-gray-600 ">
           {specification}
         </div>
-        <div className="w-[100px] line-clamp-1 text-gray-600">
+        <div className={`w-[100px] line-clamp-1 ${className}`}>
           {stoke}
         </div>
 

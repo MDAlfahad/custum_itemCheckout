@@ -10,11 +10,10 @@ const HomeRoute = () => {
 
   const productDetails = JSON.parse(localStorage.getItem("products") || "[]");
 
-  const [selectedItems, setSelectedItems] = useState(() =>{
+  const [selectedItems, setSelectedItems] = useState(() => {
     const saveItem = JSON.parse(localStorage.getItem("selectedItems") || "[]");
-    return Array.isArray(saveItem)? saveItem : [];
-});
-
+    return Array.isArray(saveItem) ? saveItem : [];
+  });
 
   const addProduct = (product) => {
     const alreadyAdded = selectedItems.some((items) => items.id === product.id);
@@ -27,13 +26,12 @@ const HomeRoute = () => {
   };
 
   // Selected products clear karo
-  const updateProduct = JSON.parse(localStorage.getItem("selectedItems"))||[]
+  const updateProduct = JSON.parse(localStorage.getItem("selectedItems")) || [];
   const clearProducts = (id) => {
-    const deleteItems = updateProduct.filter((item)=> item.id!= id)
-    localStorage.setItem("selectedItems", JSON.stringify(deleteItems))
+    const deleteItems = updateProduct.filter((item) => item.id != id);
+    localStorage.setItem("selectedItems", JSON.stringify(deleteItems));
     window.location.reload();
   };
-
 
   return (
     <div className="flex flex-col px-4 py-4">
@@ -94,7 +92,7 @@ const HomeRoute = () => {
                     specification={item.specification}
                     gst={item.gst}
                     price={item.sellingPrice}
-                    onClick={()=>clearProducts(item.id)}
+                    onClick={() => clearProducts(item.id)}
                   />
                 ))}
               </div>
@@ -125,6 +123,7 @@ const HomeRoute = () => {
                   title="Click to add product"
                 >
                   <ItemBoxAdded
+                    className={`${Number(item.itemStoke) <= 10 ? "text-red-500 font-bold" : "text-black/70"}`}
                     id={item.id}
                     productName={item.productname}
                     brand={item.brand}
@@ -140,7 +139,7 @@ const HomeRoute = () => {
 
         {/* Actions */}
         <div className="no-print w-full flex items-center justify-end gap-4">
-          <Button text="Checkout" onClick={()=>navigate("/checkOut-page")} />
+          <Button text="Checkout" onClick={() => navigate("/checkOut-page")} />
         </div>
       </div>
     </div>
